@@ -2,13 +2,20 @@ const express = require("express");
 const mongoose = require("mongoose");
 var app = express();
 
+app.use(express.json()); // Middleware 
+
 app.listen(4000, () => {
   console.log("server is runing on 3000");
 });
 
 app.get("/", (req, res) => {
-  res.send("Hello World!");
+  res.send("Hello from node api server");
 });
+
+app.post("/api/products", (req,res)=>{
+     console.log(req.body);
+     res.send(req.body)
+})
 
 mongoose
   .connect(
