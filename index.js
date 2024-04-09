@@ -49,6 +49,25 @@ app.put("/api/product/:id", async (req, res) => {
   }
 });
 
+
+//delete product
+app.delete('/api/product/:id',  async(req,res)=>{
+  try {
+    const {id}= req.params;
+    let remvoved= await Product.findByIdAndDelete(id);
+    
+    if (!remvoved) {
+        return res.status(404).send("The product with the given ID was not found.");    
+    }
+  
+    res.status(200).json({massage:"deleted!!"});
+
+  } catch (error) {
+    res.status(400).send("There was a problem deleting the user.")
+  }
+})
+
+
 mongoose
   .connect(
     "mongodb+srv://italiyaravi:JvsNOmXr7lveF64M@crud.ybhybfi.mongodb.net/?retryWrites=true&w=majority&appName=crud"
