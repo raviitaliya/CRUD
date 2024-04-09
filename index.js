@@ -33,6 +33,22 @@ app.get("/api/products", async (req, res) => {
   }
 });
 
+//update API
+app.put("/api/product/:id", async (req, res) => {
+  try {
+    const {id} = req.params;
+    const update=await Product.findByIdAndUpdate(id,req.body);
+
+    if(!update){
+      return res.status(404).json(["Product not found"]);
+    }
+    res.status(200).json(update);
+
+  } catch (error) {
+    res.status(500).json({ message: error });
+  }
+});
+
 mongoose
   .connect(
     "mongodb+srv://italiyaravi:JvsNOmXr7lveF64M@crud.ybhybfi.mongodb.net/?retryWrites=true&w=majority&appName=crud"
