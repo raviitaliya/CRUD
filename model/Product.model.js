@@ -8,14 +8,14 @@ const ProductSchema = mongoose.Schema(
       require: [true, "plese enter product"],
     },
     quntity: {
-      type: String,
+      type: Number,
       require: true,
       default: 0,
     },
     price: {
-      type: String,
+      type: Number,
       require: true,
-      default: 0,
+   
     },
   },
   {
